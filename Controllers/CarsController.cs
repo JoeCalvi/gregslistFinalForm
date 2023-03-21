@@ -44,5 +44,19 @@ namespace gregslistFinalForm.Controllers
               return BadRequest(e.Message);
             }
         }
+
+        [HttpPost]
+        public ActionResult<Car> Create([FromBody] Car carData)
+        {
+            try 
+            {
+              Car car = _carsService.Create(carData);
+              return Ok(car);
+            }
+            catch (Exception e)
+            {
+              return BadRequest(e.Message);
+            }
+        }
     }
 }

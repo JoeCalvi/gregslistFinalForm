@@ -25,5 +25,11 @@ namespace gregslistFinalForm.Services
             if(car == null) throw new Exception("Car does not exist.");
             return car;
         }
+
+        internal Car Create(Car carData)
+        {
+            Car car = _repo.Create(carData);
+            return car;
+        }
     }
 }

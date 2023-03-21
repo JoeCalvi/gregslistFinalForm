@@ -35,5 +35,19 @@ namespace gregslistFinalForm.Repositories
             Car car = _db.Query<Car>(sql, new { id }).FirstOrDefault();
             return car;
         }
+
+        internal Car Create(Car carData)
+        {
+            string sql = @"
+            INSERT INTO cars
+            (make, model, year, price, imgURL, color, description)
+            VALUES
+            (@make, @model, @year, @price, @imgURL, @color, @description);
+            SELECT LAST_INSERT_ID();
+            ";
+            int id = _db.ExecuteScalar<int>(sql, carData);
+            carData.Id = id;
+            return carData;
+        }
     }
 }

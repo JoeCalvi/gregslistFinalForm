@@ -18,5 +18,12 @@ namespace gregslistFinalForm.Services
             List<Car> cars = _repo.FindAll();
             return cars;
         }
+
+        internal Car FindOne(int id)
+        {
+            Car car = _repo.FindOne(id);
+            if(car == null) throw new Exception("Car does not exist.");
+            return car;
+        }
     }
 }

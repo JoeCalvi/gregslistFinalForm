@@ -30,5 +30,19 @@ namespace gregslistFinalForm.Controllers
               return BadRequest(e.Message);
             }
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<Car> FindOne(int id)
+        {
+            try 
+            {
+              Car car = _carsService.FindOne(id);
+              return Ok(car);
+            }
+            catch (Exception e)
+            {
+              return BadRequest(e.Message);
+            }
+        }
     }
 }

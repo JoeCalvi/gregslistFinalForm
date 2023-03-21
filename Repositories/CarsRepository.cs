@@ -23,5 +23,17 @@ namespace gregslistFinalForm.Repositories
             List<Car> cars = _db.Query<Car>(sql).ToList();
             return cars;
         }
+
+        internal Car FindOne(int id)
+        {
+            string sql = @"
+            SELECT
+            *
+            FROM cars
+            WHERE id = @id;
+            ";
+            Car car = _db.Query<Car>(sql, new { id }).FirstOrDefault();
+            return car;
+        }
     }
 }

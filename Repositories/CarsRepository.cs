@@ -49,5 +49,32 @@ namespace gregslistFinalForm.Repositories
             carData.Id = id;
             return carData;
         }
+
+        internal int Update(Car original)
+        {
+            string sql = @"
+            UPDATE cars
+            SET 
+            make = @make,
+            model = @model,
+            year = @year,
+            price = @price,
+            description = @description,
+            imgURL = @imgURL,
+            color = @color
+            WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, original);
+            return rows;
+        }
+
+        internal bool Remove(int id)
+        {
+            string sql = @"
+            DELETE FROM cars WHERE id = @id;
+            ";
+            int rows = _db.Execute(sql, new { id });
+            return rows == 1;
+        }
     }
 }

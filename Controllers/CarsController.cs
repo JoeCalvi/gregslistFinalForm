@@ -58,5 +58,34 @@ namespace gregslistFinalForm.Controllers
               return BadRequest(e.Message);
             }
         }
+
+        [HttpPut("{id}")]
+        public ActionResult<Car> Update(int id, [FromBody] Car updateData)
+        {
+            try 
+            {
+              updateData.Id = id;
+              Car car = _carsService.Update(updateData);
+              return Ok(car);
+            }
+            catch (Exception e)
+            {
+              return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<string> Remove(int id)
+        {
+          try 
+          {
+            string message = _carsService.Remove(id);
+            return Ok(message);
+          }
+          catch (Exception e)
+          {
+            return BadRequest(e.Message);
+          }
+        }
     }
 }
